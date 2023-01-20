@@ -2,26 +2,28 @@
 const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation())
 </script>
 <template>
-    <h2>Lista de Recursos:</h2>
-    <ContentNavigation v-slot="{ navigation }">
-        <ul>
-            <li v-for="link of navigation" :key="link._path">
-                <NuxtLink :to="link._path">
-                    <div class="card">
-                        <header>
-                            <h3>{{ link.title }}</h3>
-                            <p class="icon">{{ link.icon }}</p>
-                        </header>
-                        <p>{{ link.description }}</p>
-                    </div>
-                </NuxtLink>
-            </li>
-        </ul>
-    </ContentNavigation>
+    <section class="container">
+        <h2>Lista de Recursos:</h2>
+        <ContentNavigation v-slot="{ navigation }">
+            <ul class="card-wrapper">
+                <li v-for="link of navigation" :key="link._path">
+                    <NuxtLink :to="link._path">
+                        <div class="card">
+                            <header>
+                                <h3>{{ link.title }}</h3>
+                                <p class="icon">{{ link.icon }}</p>
+                            </header>
+                            <p>{{ link.description }}</p>
+                        </div>
+                    </NuxtLink>
+                </li>
+            </ul>
+        </ContentNavigation>
+    </section>
 </template>
 
 <style scoped>
-ul {
+.card-wrapper {
     padding: 0;
     display: grid;
     gap: 12px;
@@ -35,7 +37,7 @@ ul {
     padding: 32px;
     border-radius: 12px;
     border: 1px solid #2c2c31;
-    background: radial-gradient(rgb(30, 30, 32), rgb(28, 28, 30));
+    background: var(--card-bg-color);
     box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -45,7 +47,7 @@ ul {
 }
 
 .card:hover {
-    background: rgb(32, 32, 34);
+    background: var(--card-bg-color-hover);
 }
 
 .icon {

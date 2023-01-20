@@ -6,10 +6,24 @@
 </template>
 
 <style>
+/** Global Styles **/
+
+/* general */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: whitesmoke;
+}
+
+:root {
+  --primary-color: rgb(0 160 160);
+  --bg-color: rgb(28 31 39);
+  --bg-app-bar-color: rgb(28 31 39 /0.75);
+  --card-bg-color: rgb(37 42 54);
+  --card-bg-color-hover: rgb(35 40 51 /.85);
+  --horizontal-page-separation: 2em;
 }
 
 ul {
@@ -22,18 +36,12 @@ a {
 
 body {
   height: 100%;
-  background-color: rgb(30, 30, 32);
+  background-color: var(--bg-color);
 }
 
-main {
-  width: min(1050px, 100% - 2em);
-  /* height: 100%; */
+.container {
+  width: min(1050px, 100% - var(--horizontal-page-separation));
   margin: auto;
-}
-
-* {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  color: whitesmoke;
 }
 
 h1 {
@@ -57,6 +65,6 @@ span.thin-weight {
 
 span.title {
   font-weight: bold;
-  color: rgb(0, 150, 150);
+  color: var(--primary-color);
 }
 </style>

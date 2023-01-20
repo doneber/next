@@ -1,7 +1,6 @@
 <template>
     <header class="app-bar">
         <div class="container">
-            <!-- <h1><span class="title">Next</span> <span class="thin-weight">Project</span></h1> -->
             <a href="/" class="logo">
                 <span class="title">Next</span> <span class="thin-weight">Project</span>
             </a>
@@ -21,9 +20,13 @@
 </template>
 <style scoped>
 .app-bar {
+    position: sticky;
+    top: 0;
     width: 100%;
-    padding: 1rem 0;
     height: auto;
+    background-color: var(--bg-app-bar-color);
+    backdrop-filter: blur(6px);
+    padding: 1rem 0;
     border-bottom: 1px solid rgb(128 128 128 /.5);
 }
 
@@ -31,7 +34,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: calc(100% - 2rem);
+    width: calc(100% - var(--horizontal-page-separation));
     margin: auto;
 }
 
@@ -44,13 +47,4 @@ a.logo {
     font-size: 1.8rem;
 }
 
-@media (max-width: 768px) {
-    .container {
-        /* flex-direction: column; */
-    }
-
-    .container ul {
-        /* margin-top: 1rem; */
-    }
-}
 </style>
