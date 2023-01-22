@@ -35,6 +35,27 @@ a {
   text-decoration: none;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #404047;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #2c2c31;
+}
+
+main {
+  width: 100%;
+}
+
 body {
   height: 100%;
   background-color: var(--bg-color);
