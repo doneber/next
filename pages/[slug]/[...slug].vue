@@ -63,6 +63,7 @@ const courseList = list.filter((item) => item._path !== path)
 @media (max-width: 768px) {
     .wrapper {
         flex-direction: column-reverse;
+        justify-content: start;
     }
 }
 </style>
