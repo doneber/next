@@ -22,12 +22,12 @@
 .app-bar {
     position: sticky;
     top: 0;
+    display: flex;
     width: 100%;
-    height: auto;
+    height: var(--app-bar-height);
     background-color: var(--bg-app-bar-color);
     backdrop-filter: blur(6px);
-    padding: 1rem 0;
-    border-bottom: 1px solid rgb(128 128 128 /.5);
+    border-bottom: 1px solid rgb(128 128 128 /.4);
 }
 
 .container {
