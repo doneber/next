@@ -1,7 +1,7 @@
 <template>
-    <AppBar />
-    <NuxtPage />
-    <Footer />
+  <AppBar />
+  <NuxtPage />
+  <Footer />
 </template>
 
 <style>
@@ -14,6 +14,7 @@
   box-sizing: border-box;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: whitesmoke;
+  scroll-behavior: smooth;
 }
 
 :root {
