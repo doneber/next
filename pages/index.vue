@@ -2,10 +2,11 @@
     <main>
         <section class="banner">
             <h1><span class="title">Next</span> <span class="thin-weight">Project</span></h1>
-            <p>Bienvenido al proyecto <span class="title">Next</span>, donde encontrarás re-cursos espectaculares!</p>
+            <p>Bienvenido al proyecto <span class="title">Next</span> donde encontrarás cursos y re-cursos de
+                programación!</p>
             <a href="#re-cursos">
                 Empieza aquí
-                <svg viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                <svg viewBox="0 0 1024 1024" class="arrow-icon" version="1.1" xmlns="http://www.w3.org/2000/svg"
                     fill="#000000">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                     <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -34,15 +35,29 @@ section.banner {
     gap: .5rem;
 
     height: 85vh;
-    padding-left: var(--horizontal-page-separation);
-    padding-right: var(--horizontal-page-separation);
+    padding-left: 0 var(--horizontal-page-separation);
+    padding-bottom: 12vh;
     /* background-color: rgb(51, 56, 68); */
     text-align: center;
 }
 
-section.banner a svg {
-    width: 1.2rem;
+section.banner a .arrow-icon {
+    width: 1.3rem;
+    /* animation of arrow moving down */
+    animation: arrow-down 1s infinite alternate;
+
 }
+
+@keyframes arrow-down {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(4px);
+    }
+}
+
 section.banner a {
     display: grid;
     gap: 16px;

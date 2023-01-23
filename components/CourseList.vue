@@ -41,10 +41,10 @@ const randomSentence = (minWords: number, maxWords: number): string => {
                     <li v-else class="card-draft-container">
                         <div class="card">
                             <header>
-                                <h3>{{ randomSentence(9, 10) }}</h3>
+                                <h3>{{ randomSentence(7, 8) }}</h3>
                                 <p class="icon">❔</p>
                             </header>
-                            <p>{{ randomSentence(20, 22) }}</p>
+                            <p>{{ randomSentence(20, 24) }}</p>
                         </div>
                         <div class="glass"></div>
                     </li>
@@ -55,6 +55,14 @@ const randomSentence = (minWords: number, maxWords: number): string => {
 </template>
 
 <style scoped>
+section {
+    padding: 4rem 0;
+}
+
+h2 {
+    text-align: center;
+}
+
 .card-wrapper {
     margin: 2rem 0;
     padding: 0;
@@ -78,6 +86,11 @@ const randomSentence = (minWords: number, maxWords: number): string => {
 .card header {
     display: flex;
     justify-content: space-between;
+}
+
+.card header h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
 }
 
 .card:hover {
@@ -107,7 +120,7 @@ const randomSentence = (minWords: number, maxWords: number): string => {
     height: 100%;
     border-radius: 12px;
     background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(14px);
+    backdrop-filter: blur(10px);
 }
 
 .glass::after {
@@ -119,10 +132,10 @@ const randomSentence = (minWords: number, maxWords: number): string => {
     height: 100%;
 
 
-    font-size: 1.7rem;
+    font-size: 1.9rem;
     font-weight: 500;
     color: #eee;
-    text-shadow: 1px 1px 2px rgb(0 0 0 /.25), 0 0 1em rgb(0 0 0 /.25), 0 0 0.2em rgb(0 0 0 /.25);
+    text-shadow: 1px 1px 2px rgb(0 0 0 /.5), 0 0 1em rgb(0 0 0 /.5), 0 0 0.2em rgb(0 0 0 /.5);
 }
 
 .icon {
