@@ -1,8 +1,7 @@
 <template>
-  <div>
     <AppBar />
     <NuxtPage />
-  </div>
+    <Footer />
 </template>
 
 <style>
