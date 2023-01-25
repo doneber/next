@@ -5,7 +5,7 @@ const currentPath = props.path || path
 
 const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(currentPath))
 const currentCourse = navigation['_rawValue'].find(course => course._path === currentPath)
-const courseList = currentCourse.children.filter((item) => item._path !== currentPath)
+const classList = currentCourse.children.filter((item) => item._path !== currentPath)
 
 const markCheckbox = () => {
     console.log('checkbox');
@@ -15,7 +15,7 @@ const markCheckbox = () => {
 <template>
     <nav>
         <ul class="list-class">
-            <template v-for="link of courseList">
+            <template v-for="link of classList">
                 <NuxtLink :to="link._path">
                     <li :key="link._path">
                         <div class="card-class">

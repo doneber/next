@@ -4,7 +4,7 @@ const parentPath = path.split('/').slice(0, -1).join('/')
 </script>
 <template>
     <div class="wrapper">
-        <SideBar :path="parentPath" />
+        <ClassSideBar :path="parentPath" />
         <main>
             <div class="container">
                 <Breadcrumb />

@@ -1,19 +1,17 @@
 <script setup>
 const { path } = useRoute()
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(path))
-const list = navigation['_rawValue'][0]['children']
-const courseData = list.find((item) => item._path === path)
-const courseList = list.filter((item) => item._path !== path)
+const currentContent = await queryContent(path).findOne()
+
 </script>
 
 <template>
   <main>
     <div class="container">
       <Breadcrumb />
-      <h1>{{ courseData.title }}</h1>
+      <h1>{{ currentContent.navigation.title }}</h1>
       <ContentDoc />
       <h2>Lista de clases:</h2>
-      <SideBar />
+      <ClassSideBar />
     </div>
   </main>
 </template>
