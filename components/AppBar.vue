@@ -22,6 +22,7 @@
 .app-bar {
     position: sticky;
     top: 0;
+    z-index: 9;
     display: flex;
     width: 100%;
     height: var(--app-bar-height);

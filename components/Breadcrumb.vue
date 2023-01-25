@@ -45,11 +45,17 @@ if (parentPath.length > 0) {
 }
 
 .breadcrumb .current-title:hover {
-    border-bottom: none;
+    border-bottom: 1px solid transparent;
 }
 
 .breadcrumb .dash {
     font-size: 1.2rem;
     color: rgb(179 179 197);
+}
+
+@media (max-width: 900px) {
+    .breadcrumb .title, .breadcrumb .dash {
+        font-size: 1rem;
+    }
 }
 </style>

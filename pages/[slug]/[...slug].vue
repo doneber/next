@@ -19,7 +19,7 @@ const parentPath = path.split('/').slice(0, -1).join('/')
     height: calc(100vh - var(--app-bar-height));
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
     .wrapper {
         flex-direction: column-reverse;
         justify-content: start;
