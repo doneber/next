@@ -1,21 +1,35 @@
 <script setup>
+import { useSeens } from '@/stores/seens'
 const { path } = useRoute()
 const props = defineProps(['path'])
 const currentPath = props.path || path
 
+/**
+* Obtiene la información de la navegación de contenidos.
+*/
 const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(currentPath))
 const currentCourse = navigation['_rawValue'].find(course => course._path === currentPath)
 const classList = currentCourse.children.filter((item) => item._path !== currentPath)
 
-const markCheckbox = () => {
-    console.log('checkbox');
+/**
+* Obtiene la información del estado de visto de cada curso.
+*/
+const seens = useSeens()
+const newClassList = classList.map(items => {
+    const seen = seens.history.get(items._path) ? true : false
+    return { ...items, seen }
+})
+
+const updateCheckbox = ({ _path }) => {
+    const seen = !seens.history.get(_path)
+    seens.setSeen(_path, seen)
 }
 </script>
 
 <template>
     <nav>
         <ul class="list-class">
-            <template v-for="link of classList">
+            <template v-for="link of newClassList">
                 <NuxtLink :to="link._path">
                     <li :key="link._path">
                         <div class="card-class">
@@ -32,8 +46,8 @@ const markCheckbox = () => {
                             </span>
                             {{ link.title }}
                         </div>
-                        <label class="checkbox-container" @click.stop="markCheckbox()">
-                            <input type="checkbox">
+                        <label class="checkbox-container" @click.stop="updateCheckbox(link)">
+                            <input type="checkbox" :checked="link.seen" @click.stop="">
                             <span class="checkmark"></span>
                         </label>
                     </li>
