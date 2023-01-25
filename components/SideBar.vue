@@ -1,8 +1,11 @@
 <script setup>
+const { path } = useRoute()
 const props = defineProps(['path'])
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(props.path))
-const list = navigation['_rawValue'][0]['children']
-const courseList = list.filter((item) => item._path !== props.path)
+const currentPath = props.path || path
+
+const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(currentPath))
+const currentCourse = navigation['_rawValue'].find(course => course._path === currentPath)
+const courseList = currentCourse.children.filter((item) => item._path !== currentPath)
 
 const markCheckbox = () => {
     console.log('checkbox');
