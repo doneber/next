@@ -9,6 +9,7 @@ const courseList = list.filter((item) => item._path !== path)
 <template>
   <main>
     <div class="container">
+      <Breadcrumb />
       <h1>{{ courseData.title }}</h1>
       <ContentDoc />
       <h2>Lista de clases:</h2>
