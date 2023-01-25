@@ -1,0 +1,1 @@
+import{_ as a}from"./nuxt-link.4b5c3045.js";import{Q as n,h as r,m as s,q as f,a2 as _}from"./runtime-core.esm-bundler.eea51e78.js";const m=n({__name:"ProseA",props:{href:{type:String,default:""},blank:{type:Boolean,default:!1}},setup(e){return(t,l)=>{const o=a;return r(),s(o,{href:e.href},{default:f(()=>[_(t.$slots,"default")]),_:3},8,["href"])}}});export{m as default};
