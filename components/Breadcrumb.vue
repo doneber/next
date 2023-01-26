@@ -1,4 +1,9 @@
 <script setup>
+const router = useRouter();
+const goBack = () => {
+    router.back()
+}
+
 const { path } = useRoute()
 const currentPathData = await queryContent(path).findOne()
 
@@ -10,6 +15,21 @@ if (parentPath.length > 0) {
 </script>
 <template>
     <header class="breadcrumb">
+        <span class="back-icon" @click="goBack">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#fff">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <defs>
+                    </defs>
+                    <g data-name="arrow left" id="arrow_left">
+                        <path class="cls-1"
+                            d="M22,29.73a1,1,0,0,1-.71-.29L9.93,18.12a3,3,0,0,1,0-4.24L21.24,2.56A1,1,0,1,1,22.66,4L11.34,15.29a1,1,0,0,0,0,1.42L22.66,28a1,1,0,0,1,0,1.42A1,1,0,0,1,22,29.73Z">
+                        </path>
+                    </g>
+                </g>
+            </svg>
+        </span>
         <NuxtLink to="/">
             <span class="title"> ... </span>
         </NuxtLink>
@@ -26,10 +46,22 @@ if (parentPath.length > 0) {
 
 <style scoped>
 .breadcrumb {
+    top: 0;
+    position: sticky;
+
     display: flex;
     align-items: center;
     gap: 7px;
-    margin: 16px 0 32px 0;
+    margin: 0px 0 16px 0;
+    padding: 12px 0 12px 0;
+
+    background-color: var(--bg-color);
+}
+
+.breadcrumb .back-icon {
+    width: 1.4rem;
+    height: 1.4rem;
+    cursor: pointer;
 }
 
 .breadcrumb .title {
@@ -54,7 +86,9 @@ if (parentPath.length > 0) {
 }
 
 @media (max-width: 900px) {
-    .breadcrumb .title, .breadcrumb .dash {
+
+    .breadcrumb .title,
+    .breadcrumb .dash {
         font-size: 1rem;
     }
 }
