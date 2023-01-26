@@ -24,6 +24,10 @@ const updateCheckbox = ({ _path }) => {
     const seen = !seens.history.get(_path)
     seens.setSeen(_path, seen)
 }
+// TODO: Actualizar el checkbox cuando se cambia el estado de visto
+// watch(seens.history, async () => {
+//     console.log('seens.history changed');
+// })
 </script>
 
 <template>
