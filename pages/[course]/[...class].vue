@@ -10,6 +10,7 @@ const parentPath = path.split('/').slice(0, -1).join('/')
                 <Breadcrumb />
                 <ContentDoc />
             </div>
+            <Footer />
         </main>
     </div>
 </template>
@@ -17,6 +18,10 @@ const parentPath = path.split('/').slice(0, -1).join('/')
 .wrapper {
     display: flex;
     height: calc(100vh - var(--app-bar-height));
+}
+
+.rich-content {
+    overflow: auto;
 }
 
 @media (max-width: 900px) {

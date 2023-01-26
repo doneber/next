@@ -24,6 +24,7 @@ footer {
     flex-direction: column;
     align-items: center;
 
+    height: var(--footer-height);
     padding: 32px 0;
     text-align: center;
 }

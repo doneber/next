@@ -1,7 +1,6 @@
 <template>
   <AppBar />
   <NuxtPage />
-  <Footer />
 </template>
 
 <style>
@@ -25,6 +24,7 @@
   --card-bg-color-hover: rgb(35 40 51 /.85);
   --horizontal-page-separation: 2em;
   --app-bar-height: 70px;
+  --footer-height: 130px;
 }
 
 ul {

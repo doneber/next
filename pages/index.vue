@@ -18,6 +18,7 @@
         </section>
         <CourseList id="re-cursos" />
     </main>
+    <Footer />
 </template>
 <style scoped>
 h1 {

@@ -13,6 +13,7 @@ const currentContent = await queryContent(path).findOne()
       <h2>Lista de clases:</h2>
       <ClassSideBar />
     </div>
+    <Footer />
   </main>
 </template>
 
