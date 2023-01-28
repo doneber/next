@@ -6,22 +6,31 @@ const authorData= pageData?.author
 </script>
 
 <template>
-  <main>
-    <div class="container">
-      <Breadcrumb />
-      <h1 class="course-title">{{ pageData.title }}</h1>
-      <AuthorInfo
-        :author="authorData"
-      />
-      <ContentDoc />
-      <h2>Lista de clases:</h2>
-      <ClassSideBar />
-    </div>
-    <Footer />
-  </main>
+  <div class="wrapper">
+    <main class="rich-content">
+      <div class="container">
+        <Breadcrumb />
+        <h1 class="course-title">{{ pageData.title }}</h1>
+        <AuthorInfo :author="authorData" />
+        <ContentDoc />
+        <h2>Lista de clases:</h2>
+        <ClassSideBar />
+      </div>
+      <Footer />
+    </main>
+  </div>
 </template>
 
 <style scoped>
+.wrapper {
+  height: calc(100vh - var(--app-bar-height));
+}
+
+.rich-content {
+  height: 100%;
+  overflow: auto;
+}
+
 .course-title {
   margin-bottom: 8px;
 }

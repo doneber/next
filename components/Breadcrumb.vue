@@ -31,14 +31,14 @@ const goBack =parentPath || '/'
         </NuxtLink>
         <NuxtLink to="/">
             <span class="title"> ... </span>
+            <span class="dash">/</span>
         </NuxtLink>
         <template v-if="parentPathData">
-            <span class="dash">/</span>
             <NuxtLink :to="parentPathData._path">
                 <span class="title">{{ parentPathData.navigation.title }}</span>
             </NuxtLink>
+            <span class="dash">/</span>
         </template>
-        <span class="dash">/</span>
         <span class="title current-title">{{ currentPathData?.navigation?.title || currentPathData.title }}</span>
     </header>
 </template>
