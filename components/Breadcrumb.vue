@@ -1,8 +1,4 @@
 <script setup>
-const router = useRouter();
-const goBack = () => {
-    router.back()
-}
 
 const { path } = useRoute()
 const currentPathData = await queryContent(path).findOne()
@@ -12,10 +8,13 @@ const parentPath = path.split('/').slice(0, -1).join('/')
 if (parentPath.length > 0) {
     parentPathData = await queryContent(parentPath).findOne()
 }
+
+const goBack =parentPath || '/'
+
 </script>
 <template>
     <header class="breadcrumb">
-        <span class="back-icon" @click="goBack">
+        <NuxtLink class="back-icon" :to="goBack">
             <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#fff">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -29,7 +28,7 @@ if (parentPath.length > 0) {
                     </g>
                 </g>
             </svg>
-        </span>
+        </NuxtLink>
         <NuxtLink to="/">
             <span class="title"> ... </span>
         </NuxtLink>
