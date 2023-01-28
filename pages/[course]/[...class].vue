@@ -1,9 +1,12 @@
 <script setup>
 import { useSeens } from '@/stores/seens'
+
 const { path } = useRoute()
 const seens = useSeens()
 const parentPath = path.split('/').slice(0, -1).join('/')
 
+const { navigation } = await queryContent(parentPath).findOne()
+const authorData = { ...navigation.author }
 /**
 * El evento scroll se dispara para verificar
 * si el usuario ha llegado al final de la página
@@ -40,6 +43,7 @@ watchEffect(() => {
         <main class="rich-content" ref="input" @scroll="scrolling">
             <div class="container">
                 <Breadcrumb />
+                <AuthorInfo :author="authorData" />
                 <ContentDoc />
             </div>
             <Footer />

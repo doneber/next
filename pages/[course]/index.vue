@@ -1,6 +1,7 @@
 <script setup>
 const { path } = useRoute()
-const currentContent = await queryContent(path).findOne()
+const { navigation: pageData} = await queryContent(path).findOne()
+const authorData= pageData?.author
 
 </script>
 
@@ -8,7 +9,10 @@ const currentContent = await queryContent(path).findOne()
   <main>
     <div class="container">
       <Breadcrumb />
-      <h1>{{ currentContent.navigation.title }}</h1>
+      <h1 class="course-title">{{ pageData.title }}</h1>
+      <AuthorInfo
+        :author="authorData"
+      />
       <ContentDoc />
       <h2>Lista de clases:</h2>
       <ClassSideBar />
@@ -18,6 +22,10 @@ const currentContent = await queryContent(path).findOne()
 </template>
 
 <style scoped>
+.course-title {
+  margin-bottom: 8px;
+}
+
 .list-class li {
   padding: 8px;
   padding-left: 12px;

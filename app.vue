@@ -18,6 +18,7 @@
 
 :root {
   --primary-color: rgb(0 160 160);
+  --text-second-color: rgb(179 179 197);
   --bg-color: rgb(28 31 39);
   --bg-app-bar-color: rgb(28 31 39 /0.75);
   --card-bg-color: rgb(37 42 54);
