@@ -35,7 +35,7 @@ const updateCheckbox = ({ _path }) => {
         <ul class="list-class">
             <template v-for="link of newClassList">
                 <NuxtLink :to="link._path">
-                    <li :key="link._path">
+                    <li :key="link._path" :class="[link._path == path ?'current-class':'']">
                         <div class="card-class">
                             <span>
                                 <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none"
@@ -83,6 +83,10 @@ nav {
     display: flex;
     align-items: center;
     gap: 12px;
+}
+
+.current-class {
+    background-color: var(--card-bg-color-hover);
 }
 
 /* The container */
