@@ -64,7 +64,7 @@ body {
 
 .container {
   width: min(1050px, 100% - var(--horizontal-page-separation));
-  margin: auto;
+  margin: 0 auto;
 }
 
 h1 {

@@ -63,6 +63,8 @@ const updateCheckbox = ({ _path }) => {
 
 <style>
 nav {
+    position: sticky;
+    top: 0;
     overflow: auto;
     border: 1px solid #2c2c31;
 }
@@ -151,5 +153,12 @@ nav {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+@media (max-width: 900px) {
+    nav {
+        position: static;
+        overflow: unset;
+    }
 }
 </style>

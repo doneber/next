@@ -36,17 +36,18 @@ watchEffect(() => {
         // not mounted yet, or the element was unmounted (e.g. by v-if)
     }
 })
+
 </script>
 <template>
     <div class="wrapper">
-        <ClassSideBar :path="parentPath" />
         <main class="rich-content" ref="input" @scroll="scrolling">
+            <ClassSideBar :path="parentPath" />
             <div class="container">
                 <Breadcrumb />
                 <AuthorInfo :author="authorData" />
                 <ContentDoc />
+                <!-- <Footer /> -->
             </div>
-            <Footer />
         </main>
     </div>
 </template>
@@ -57,13 +58,13 @@ watchEffect(() => {
 }
 
 .rich-content {
+    display: flex;
     overflow: auto;
 }
 
 @media (max-width: 900px) {
-    .wrapper {
+    .rich-content {
         flex-direction: column-reverse;
-        justify-content: start;
     }
 }
 </style>
