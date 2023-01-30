@@ -1,24 +1,41 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <main>
-        <section class="banner">
-            <h1><span class="title">Next</span> <span class="thin-weight">Project</span></h1>
-            <p>Bienvenido al proyecto <span class="title">Next</span> donde encontrarás cursos y re-cursos de
-                programación!</p>
-            <a href="#re-cursos">
-                Empieza aquí
-                <svg viewBox="0 0 1024 1024" class="arrow-icon" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                    fill="#000000">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <path d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z" fill="#ffffff">
-                        </path>
-                    </g>
-                </svg></a>
-        </section>
-        <CourseList id="re-cursos" />
-    </main>
-    <Footer />
+  <main>
+    <section class="banner">
+      <h1><span class="title">Next</span> <span class="thin-weight">Project</span></h1>
+      <p>
+        Bienvenido al proyecto <span class="title">Next</span> donde encontrarás cursos y re-cursos de
+        programación!
+      </p>
+      <a href="#re-cursos">
+        Empieza aquí
+        <svg
+          viewBox="0 0 1024 1024"
+          class="arrow-icon"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="#000000"
+        >
+          <g
+            id="SVGRepo_bgCarrier"
+            stroke-width="0"
+          />
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+          <g id="SVGRepo_iconCarrier">
+            <path
+              d="M903.232 256l56.768 50.432L512 768 64 306.432 120.768 256 512 659.072z"
+              fill="#ffffff"
+            />
+          </g>
+        </svg></a>
+    </section>
+    <CourseList id="re-cursos" />
+  </main>
+  <TheFooter />
 </template>
 <style scoped>
 h1 {

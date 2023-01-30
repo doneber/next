@@ -7,7 +7,6 @@ export const useSeens = defineStore('seens', {
     actions: {
         setSeen(key: string, value: boolean) {
             this.history.set(key, value)
-            console.log({ key, value })
         },
     },
 })

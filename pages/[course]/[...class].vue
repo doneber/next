@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import { useSeens } from '@/stores/seens'
 
@@ -39,17 +40,21 @@ watchEffect(() => {
 
 </script>
 <template>
-    <div class="wrapper">
-        <main class="rich-content" ref="input" @scroll="scrolling">
-            <ClassSideBar :path="parentPath" />
-            <div class="container">
-                <Breadcrumb />
-                <AuthorInfo :author="authorData" />
-                <ContentDoc />
-                <!-- <Footer /> -->
-            </div>
-        </main>
-    </div>
+  <div class="wrapper">
+    <main
+      ref="input"
+      class="rich-content"
+      @scroll="scrolling"
+    >
+      <ClassSideBar :path="parentPath" />
+      <div class="container">
+        <TheBreadcrumb />
+        <AuthorInfo :author="authorData" />
+        <ContentDoc />
+        <!-- <TheFooter /> -->
+      </div>
+    </main>
+  </div>
 </template>
 <style scoped>
 .wrapper {

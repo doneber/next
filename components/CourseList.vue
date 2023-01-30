@@ -22,36 +22,46 @@ const randomSentence = (minWords: number, maxWords: number): string => {
 }
 </script>
 <template>
-    <section class="container">
-        <h2>Lista de Re-Cursos:</h2>
-        <ContentNavigation v-slot="{ navigation }">
-            <ul class="card-wrapper">
-                <template v-for="link of navigation" :key="link._path">
-                    <li v-if="!link?.draft">
-                        <NuxtLink :to="link._path">
-                            <div class="card">
-                                <header>
-                                    <h3>{{ link.title }}</h3>
-                                    <p class="icon">{{ link.icon }}</p>
-                                </header>
-                                <p>{{ link.description }}</p>
-                            </div>
-                        </NuxtLink>
-                    </li>
-                    <li v-else class="card-draft-container">
-                        <div class="card">
-                            <header>
-                                <h3>{{ randomSentence(7, 8) }}</h3>
-                                <p class="icon">❔</p>
-                            </header>
-                            <p>{{ randomSentence(20, 24) }}</p>
-                        </div>
-                        <div class="glass"></div>
-                    </li>
-                </template>
-            </ul>
-        </ContentNavigation>
-    </section>
+  <section class="container">
+    <h2>Lista de Re-Cursos:</h2>
+    <ContentNavigation v-slot="{ navigation }">
+      <ul class="card-wrapper">
+        <template
+          v-for="link of navigation"
+          :key="link._path"
+        >
+          <li v-if="!link?.draft">
+            <NuxtLink :to="link._path">
+              <div class="card">
+                <header>
+                  <h3>{{ link.title }}</h3>
+                  <p class="icon">
+                    {{ link.icon }}
+                  </p>
+                </header>
+                <p>{{ link.description }}</p>
+              </div>
+            </NuxtLink>
+          </li>
+          <li
+            v-else
+            class="card-draft-container"
+          >
+            <div class="card">
+              <header>
+                <h3>{{ randomSentence(7, 8) }}</h3>
+                <p class="icon">
+                  ❔
+                </p>
+              </header>
+              <p>{{ randomSentence(20, 24) }}</p>
+            </div>
+            <div class="glass" />
+          </li>
+        </template>
+      </ul>
+    </ContentNavigation>
+  </section>
 </template>
 
 <style scoped>

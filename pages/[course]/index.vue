@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 const { path } = useRoute()
 const { navigation: pageData} = await queryContent(path).findOne()
@@ -9,14 +10,16 @@ const authorData= pageData?.author
   <div class="wrapper">
     <main class="rich-content">
       <div class="container">
-        <Breadcrumb />
-        <h1 class="course-title">{{ pageData.title }}</h1>
+        <TheBreadcrumb />
+        <h1 class="course-title">
+          {{ pageData.title }}
+        </h1>
         <AuthorInfo :author="authorData" />
         <ContentDoc />
         <h2>Lista de clases:</h2>
         <ClassSideBar />
       </div>
-      <Footer />
+      <TheFooter />
     </main>
   </div>
 </template>

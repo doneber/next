@@ -1,7 +1,12 @@
 <script setup>
 import { useSeens } from '@/stores/seens'
 const { path } = useRoute()
-const props = defineProps(['path'])
+const props = defineProps({
+    path: {
+        type: String,
+        default: () => undefined,
+    },
+})
 const currentPath = props.path || path
 
 /**
@@ -31,34 +36,61 @@ const updateCheckbox = ({ _path }) => {
 </script>
 
 <template>
-    <nav>
-        <ul class="list-class">
-            <template v-for="link of newClassList">
-                <NuxtLink :to="link._path">
-                    <li :key="link._path" :class="[link._path == path ?'current-class':'']">
-                        <div class="card-class">
-                            <span>
-                                <svg width="24px" height="24px" viewBox="0 0 24 24" stroke-width="1.5" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg" color="#FFF">
-                                    <path
-                                        d="M4 21.4V2.6a.6.6 0 01.6-.6h11.652a.6.6 0 01.424.176l3.148 3.148A.6.6 0 0120 5.75V21.4a.6.6 0 01-.6.6H4.6a.6.6 0 01-.6-.6zM8 10h8M8 18h8M8 14h4"
-                                        stroke="#FFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                    </path>
-                                    <path d="M16 2v3.4a.6.6 0 00.6.6H20" stroke="#FFF" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                </svg>
-                            </span>
-                            {{ link.title }}
-                        </div>
-                        <label class="checkbox-container" @click.stop="updateCheckbox(link)">
-                            <input type="checkbox" :checked="link.seen" @click.stop="">
-                            <span class="checkmark"></span>
-                        </label>
-                    </li>
-                </NuxtLink>
-            </template>
-        </ul>
-    </nav>
+  <nav>
+    <ul class="list-class">
+      <template
+        v-for="link of newClassList"
+        :key="link._path"
+      >
+        <NuxtLink :to="link._path">
+          <li
+            :class="[link._path == path ?'current-class':'']"
+          >
+            <div class="card-class">
+              <span>
+                <svg
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  color="#FFF"
+                >
+                  <path
+                    d="M4 21.4V2.6a.6.6 0 01.6-.6h11.652a.6.6 0 01.424.176l3.148 3.148A.6.6 0 0120 5.75V21.4a.6.6 0 01-.6.6H4.6a.6.6 0 01-.6-.6zM8 10h8M8 18h8M8 14h4"
+                    stroke="#FFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M16 2v3.4a.6.6 0 00.6.6H20"
+                    stroke="#FFF"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              {{ link.title }}
+            </div>
+            <label
+              class="checkbox-container"
+              @click.stop="updateCheckbox(link)"
+            >
+              <input
+                type="checkbox"
+                :checked="link.seen"
+                @click.stop=""
+              >
+              <span class="checkmark" />
+            </label>
+          </li>
+        </NuxtLink>
+      </template>
+    </ul>
+  </nav>
 </template>
 
 <style>
