@@ -1,7 +1,7 @@
 <script setup>
-import { useSeens } from '@/stores/seens'
+import { useCourses } from '@/stores/courses'
 const { path } = useRoute()
-defineProps({
+const props = defineProps({
     path: {
         type: String,
         default: () => undefined,
@@ -12,10 +12,11 @@ defineProps({
     }
 })
 
-const seens = useSeens()
+const courses = useCourses()
+let oficialLessonList = courses.courseList[props.path]
 const updateCheckbox = ({ _path }) => {
-    const seen = !seens.history.get(_path)
-    seens.setSeen(_path, seen)
+  const lesson = oficialLessonList.find(e => e._path === _path)
+  lesson.seen = !lesson.seen
 }
 
 </script>
@@ -24,7 +25,7 @@ const updateCheckbox = ({ _path }) => {
   <nav>
     <ul class="list-class">
       <template
-        v-for="link of lessonList"
+        v-for="link of oficialLessonList"
         :key="link._path"
       >
         <NuxtLink :to="link._path">
@@ -62,12 +63,12 @@ const updateCheckbox = ({ _path }) => {
             </div>
             <label
               class="checkbox-container"
-              @click.stop="updateCheckbox(link)"
+              @click.stop=""
             >
               <input
                 type="checkbox"
                 :checked="link.seen"
-                @click.stop=""
+                @input.stop="updateCheckbox(link)"
               >
               <span class="checkmark" />
             </label>

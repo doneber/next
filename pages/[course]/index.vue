@@ -1,18 +1,23 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import { useSeens } from '@/stores/seens'
+import { useCourses } from '@/stores/courses'
 const { path } = useRoute()
-const { navigation: pageData } = await queryContent(path).findOne()
+const { data: navigation } = await useAsyncData(path, () => fetchContentNavigation(path))
+const currentLessonList = navigation['_rawValue'].find(course => course._path === path).children
+
+const pageData = currentLessonList.find(item => item._path === path)
 const authorData = pageData?.author
 
-const seens = useSeens()
-const { data: navigation } = await useAsyncData(path, () => fetchContentNavigation(path))
-const currentCourse = navigation['_rawValue'].find(course => course._path === path)
-const classList = currentCourse.children.filter((item) => item._path !== path)
-classList.forEach(item => {
-  const seen = seens.history.get(item._path) ? true : false
-  item.seen = seen
-});
+const courses = useCourses()
+if (!courses.courseList[path]) {
+  let lessonListWithoutIndexMd = currentLessonList.filter((item) => item._path !== path)
+  lessonListWithoutIndexMd.forEach(item => {
+    item.seen = false
+  });
+  courses.addCourse(path, lessonListWithoutIndexMd)
+}
+
+let lessonList = courses.courseList[path]
 
 </script>
 
@@ -27,7 +32,10 @@ classList.forEach(item => {
         <AuthorInfo :author="authorData" />
         <ContentDoc />
         <h2>Lista de clases:</h2>
-        <LessonList :lesson-list="classList" />
+        <LessonList
+          :path="path"
+          :lesson-list="lessonList"
+        />
       </div>
       <TheFooter />
     </main>

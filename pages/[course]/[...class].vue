@@ -1,61 +1,44 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import { useSeens } from '@/stores/seens'
+import { onMounted } from 'vue'
+import { useCourses } from '@/stores/courses'
 
 const { path } = useRoute()
 const parentPath = path.split('/').slice(0, -1).join('/')
 
-const { navigation: currentFileNavigation } = await queryContent(parentPath).findOne()
-const authorData = { ...currentFileNavigation.author }
-
-/**
-* Obtiene la información de la navegación de contenidos.
-*/
-const seens = useSeens()
 const { data: navigation } = await useAsyncData(path, () => fetchContentNavigation(parentPath))
-const currentCourse = navigation['_rawValue'].find(course => course._path === parentPath)
-let lessonList = currentCourse.children.filter((item) => item._path !== parentPath)
-lessonList.forEach(item => {
-  const seen = seens.history.get(item._path) ? true : false
-  item.seen = seen
-});
+const currentLessonList = navigation['_rawValue'].find(course => course._path === parentPath).children
+const currentdata = currentLessonList.find((item) => item._path === parentPath)
+const authorData = currentdata.author
 
-// TODO: Actualizar el checkbox cuando se cambia el estado de visto
-// watch(seens.history, async () => {
-//   lessonList.forEach(item => {
-//     const seen = seens.history.get(item._path) ? true : false
-//     item.seen = seen
-//   });
-// })
+/* Obtiene la información de la navegación de contenidos. */
+const courses = useCourses()
+if (!courses.courseList[parentPath]) {
+  let lessonListWithoutIndexMd = currentLessonList.filter((item) => item._path !== parentPath)
+  lessonListWithoutIndexMd.forEach(item => {
+    item.seen = false
+  });
+  courses.addCourse(parentPath, lessonListWithoutIndexMd)
+}
 
-/**
-* El evento scroll se dispara para verificar
-* si el usuario ha llegado al final de la página
-*/
+let lessonList = courses.courseList[parentPath]
 
+
+/* Verifica si el usuario ha llegado al final de la página */
 const scrolling = (e) => {
   const clientHeight = e.target.clientHeight
   const scrollHeight = e.target.scrollHeight
   const scrollTop = e.target.scrollTop
 
   if (scrollTop >= (scrollHeight - clientHeight - 130)) {
-    if (!seens.history.get(path)) {
-      seens.setSeen(path, true)
-    }
+    const lesson = lessonList.find(e => e._path === path)
+    lesson.seen = true
   }
 }
-/**
-* Dispara el evento scroll para 
-* verificar si el usuario ha llegado al final de la página
-* ni bien se carga la página
-**/
+/* al cargar la página dispara el evento scroll */
 const input = ref(null)
-watchEffect(() => {
-  if (input.value) {
-    input.value.dispatchEvent(new Event("scroll"))
-  } else {
-    // not mounted yet, or the element was unmounted (e.g. by v-if)
-  }
+onMounted(() => {
+  input.value.dispatchEvent(new Event("scroll"))
 })
 
 </script>
