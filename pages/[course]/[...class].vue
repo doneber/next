@@ -3,7 +3,6 @@
 import { useSeens } from '@/stores/seens'
 
 const { path } = useRoute()
-const seens = useSeens()
 const parentPath = path.split('/').slice(0, -1).join('/')
 
 const { navigation: currentFileNavigation } = await queryContent(parentPath).findOne()
@@ -12,8 +11,8 @@ const authorData = { ...currentFileNavigation.author }
 /**
 * Obtiene la información de la navegación de contenidos.
 */
-// const currentPath = props.path || path
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(parentPath))
+const seens = useSeens()
+const { data: navigation } = await useAsyncData(path, () => fetchContentNavigation(parentPath))
 const currentCourse = navigation['_rawValue'].find(course => course._path === parentPath)
 let lessonList = currentCourse.children.filter((item) => item._path !== parentPath)
 lessonList.forEach(item => {
