@@ -6,23 +6,44 @@ const { path } = useRoute()
 const seens = useSeens()
 const parentPath = path.split('/').slice(0, -1).join('/')
 
-const { navigation } = await queryContent(parentPath).findOne()
-const authorData = { ...navigation.author }
+const { navigation: currentFileNavigation } = await queryContent(parentPath).findOne()
+const authorData = { ...currentFileNavigation.author }
+
+/**
+* Obtiene la información de la navegación de contenidos.
+*/
+// const currentPath = props.path || path
+const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(parentPath))
+const currentCourse = navigation['_rawValue'].find(course => course._path === parentPath)
+let lessonList = currentCourse.children.filter((item) => item._path !== parentPath)
+lessonList.forEach(item => {
+  const seen = seens.history.get(item._path) ? true : false
+  item.seen = seen
+});
+
+// TODO: Actualizar el checkbox cuando se cambia el estado de visto
+// watch(seens.history, async () => {
+//   lessonList.forEach(item => {
+//     const seen = seens.history.get(item._path) ? true : false
+//     item.seen = seen
+//   });
+// })
+
 /**
 * El evento scroll se dispara para verificar
 * si el usuario ha llegado al final de la página
 */
 
 const scrolling = (e) => {
-    const clientHeight = e.target.clientHeight
-    const scrollHeight = e.target.scrollHeight
-    const scrollTop = e.target.scrollTop
+  const clientHeight = e.target.clientHeight
+  const scrollHeight = e.target.scrollHeight
+  const scrollTop = e.target.scrollTop
 
-    if (scrollTop >= (scrollHeight - clientHeight - 130)) {
-        if (!seens.history.get(path)) {
-            seens.setSeen(path, true)
-        }
+  if (scrollTop >= (scrollHeight - clientHeight - 130)) {
+    if (!seens.history.get(path)) {
+      seens.setSeen(path, true)
     }
+  }
 }
 /**
 * Dispara el evento scroll para 
@@ -31,11 +52,11 @@ const scrolling = (e) => {
 **/
 const input = ref(null)
 watchEffect(() => {
-    if (input.value) {
-        input.value.dispatchEvent(new Event("scroll"))
-    } else {
-        // not mounted yet, or the element was unmounted (e.g. by v-if)
-    }
+  if (input.value) {
+    input.value.dispatchEvent(new Event("scroll"))
+  } else {
+    // not mounted yet, or the element was unmounted (e.g. by v-if)
+  }
 })
 
 </script>
@@ -46,7 +67,10 @@ watchEffect(() => {
       class="rich-content"
       @scroll="scrolling"
     >
-      <ClassSideBar :path="parentPath" />
+      <LessonList
+        :path="parentPath"
+        :lesson-list="lessonList"
+      />
       <div class="container">
         <TheBreadcrumb />
         <AuthorInfo :author="authorData" />
@@ -58,18 +82,18 @@ watchEffect(() => {
 </template>
 <style scoped>
 .wrapper {
-    display: flex;
-    height: calc(100vh - var(--app-bar-height));
+  display: flex;
+  height: calc(100vh - var(--app-bar-height));
 }
 
 .rich-content {
-    display: flex;
-    overflow: auto;
+  display: flex;
+  overflow: auto;
 }
 
 @media (max-width: 900px) {
-    .rich-content {
-        flex-direction: column-reverse;
-    }
+  .rich-content {
+    flex-direction: column-reverse;
+  }
 }
 </style>

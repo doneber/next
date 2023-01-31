@@ -47,7 +47,6 @@ const goBack = parentPath || '/'
       </svg>
     </NuxtLink>
     <NuxtLink to="/">
-      <span class="title"> ... </span>
       <span class="dash">/</span>
     </NuxtLink>
     <template v-if="parentPathData">

@@ -1,45 +1,30 @@
 <script setup>
 import { useSeens } from '@/stores/seens'
 const { path } = useRoute()
-const props = defineProps({
+defineProps({
     path: {
         type: String,
         default: () => undefined,
     },
+    lessonList : {
+      type: Array,
+      required: true,
+    }
 })
-const currentPath = props.path || path
 
-/**
-* Obtiene la información de la navegación de contenidos.
-*/
-const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(currentPath))
-const currentCourse = navigation['_rawValue'].find(course => course._path === currentPath)
-const classList = currentCourse.children.filter((item) => item._path !== currentPath)
-
-/**
-* Obtiene la información del estado de visto de cada curso.
-*/
 const seens = useSeens()
-const newClassList = classList.map(items => {
-    const seen = seens.history.get(items._path) ? true : false
-    return { ...items, seen }
-})
-
 const updateCheckbox = ({ _path }) => {
     const seen = !seens.history.get(_path)
     seens.setSeen(_path, seen)
 }
-// TODO: Actualizar el checkbox cuando se cambia el estado de visto
-// watch(seens.history, async () => {
-//     console.log('seens.history changed');
-// })
+
 </script>
 
 <template>
   <nav>
     <ul class="list-class">
       <template
-        v-for="link of newClassList"
+        v-for="link of lessonList"
         :key="link._path"
       >
         <NuxtLink :to="link._path">

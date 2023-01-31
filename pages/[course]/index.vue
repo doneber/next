@@ -1,8 +1,19 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
+import { useSeens } from '@/stores/seens'
 const { path } = useRoute()
 const { navigation: pageData} = await queryContent(path).findOne()
 const authorData= pageData?.author
+
+const seens = useSeens()
+const parentPath = path
+const { data: navigation } = await useAsyncData('navigation', () => fetchContentNavigation(parentPath))
+const currentCourse = navigation['_rawValue'].find(course => course._path === parentPath)
+const classList = currentCourse.children.filter((item) => item._path !== parentPath)
+classList.forEach(item => {
+  const seen = seens.history.get(item._path) ? true : false
+  item.seen = seen
+});
 
 </script>
 
@@ -17,7 +28,7 @@ const authorData= pageData?.author
         <AuthorInfo :author="authorData" />
         <ContentDoc />
         <h2>Lista de clases:</h2>
-        <ClassSideBar />
+        <LessonList :lesson-list="classList" />
       </div>
       <TheFooter />
     </main>

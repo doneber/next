@@ -30,9 +30,9 @@ const props = defineProps({
     </span>
     <a
       class="author-name"
-      :href="props.author.url"
+      :href="props.author.url || '#'"
     >
-      {{ props.author.name }}
+      {{ props.author.name || 'Anónimo' }}
     </a>
   </div>
 </template>
