@@ -73,10 +73,18 @@ const goBack = parentPath || '/'
     background-color: var(--bg-color);
 }
 
+.breadcrumb .back-icon:hover {
+  background-color: var(--card-bg-color);
+  box-shadow: 0 0 5px rgba(0 0 0 /.1);
+}
 .breadcrumb .back-icon {
+    place-items: center;
+    box-sizing: content-box;
     width: 1.4rem;
     height: 1.4rem;
+    padding: 6px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
 .breadcrumb .title {
