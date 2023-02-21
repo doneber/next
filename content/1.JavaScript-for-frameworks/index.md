@@ -1,7 +1,7 @@
 ---
 navigation:
-  title: 'JavaScript para Aprender Vue'
-  icon: '💛'
+  title: 'JavaScript para aprender un Framework'
+  icon: '🤍'
   description: 'Aprende los conceptos necesarios para empezar a usar un framework basado en JavaScript, en este caso Vue.'
   author:
     name: '@doneber'
