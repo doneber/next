@@ -7,8 +7,17 @@
         Bienvenido al proyecto <span class="title">Next</span> donde encontrarás cursos y re-cursos de
         programación!
       </p>
-      <a href="#re-cursos">
-        Empieza aquí
+      <a
+        class="btn-call-to-action"
+        type="button"
+        href="#re-cursos"
+      >
+        Empieza Aquí
+      </a>
+      <a
+        
+        href="#re-cursos"
+      >
         <svg
           viewBox="0 0 1024 1024"
           class="arrow-icon"
@@ -31,7 +40,8 @@
               fill="#ffffff"
             />
           </g>
-        </svg></a>
+        </svg>
+      </a>
     </section>
     <CourseList id="re-cursos" />
   </main>
@@ -52,14 +62,16 @@ section.banner {
     place-content: center;
     gap: .5rem;
 
-    height: 85vh;
+    height: 90vh;
     padding-left: 0 var(--horizontal-page-separation);
-    padding-bottom: 12vh;
+    /* padding-bottom: 10vh; */
     /* background-color: rgb(51, 56, 68); */
     text-align: center;
 }
 
-section.banner a .arrow-icon {
+.arrow-icon {
+  margin:auto;
+  margin-top: 8rem;
     width: 1.3rem;
     /* animation of arrow moving down */
     animation: arrow-down 1s infinite alternate;
@@ -76,16 +88,15 @@ section.banner a .arrow-icon {
     }
 }
 
-section.banner a {
+section.banner .btn-call-to-action {
     display: grid;
     gap: 16px;
     grid-template-columns: auto 1fr;
     place-items: center;
 
-    width: fit-content;
     margin: auto;
     margin-top: 2rem;
-    padding: 1rem 2rem;
+    padding: .8rem 1.6rem;
     border: 2px solid transparent;
     border-radius: 0.5rem;
 
@@ -93,7 +104,4 @@ section.banner a {
     font-size: 1.3rem;
 }
 
-section.banner a:hover {
-    background-color: var(--primary-color);
-}
 </style>
