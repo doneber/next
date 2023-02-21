@@ -1,11 +1,15 @@
-# Next 🚀
+# Next
 ![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D) ![Nuxtjs](https://img.shields.io/badge/Nuxt-002E3B?style=for-the-badge&logo=nuxtdotjs&logoColor=#00DC82) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 
-Básicamente este proyecto tiene el objetivo de ser una interfaz tipo plataforma para mostrar diferentes recursos y cursos 😉
+Básicamente este proyecto tiene el objetivo de ser un repositorio de recursos y cursos con una interfaz tipo plataforma😉
 
 La idea también es hacer una siguiente versión de [este proyecto](https://github.com/doneber/enfocate) pero con nuevas tecnologías y más funcionalidades 🥲
 
 (El nombre "Next" esta aún por definirse)
+
+## Demo online 🚀
+
+ https://next.doneber.dev/
 
 ## Stack de tecnologías:
 
@@ -27,9 +31,6 @@ La idea también es hacer una siguiente versión de [este proyecto](https://gith
 Después de clonar el repositorio, instala las dependencias:
 
 ```bash
-# yarn
-yarn install
-
 # npm
 npm install
 ```
