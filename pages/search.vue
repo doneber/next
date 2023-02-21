@@ -17,6 +17,9 @@ watch(query, async () => {
 <template>
   <div class="container">
     <form action="">
+      <label>
+        What are you looking for?
+      </label>
       <input
         v-model="query"
         type="search"
@@ -45,19 +48,25 @@ watch(query, async () => {
 <style scoped>
 form {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 1rem;
   padding: 1rem 0;
   background-color: var(--bg-color);
   border-radius: 4px;
 }
-
+label {
+  font-size: 1.2rem;
+  text-align: center;
+}
 input {
-  flex: 1;
+  width: 100%;
+  height: 3rem;
   padding: 0.5rem;
   border: 1px solid var(--border-color);
   border-radius: 4px;
   background-color: var(--card-bg-color);
+  font-size: 1.2rem;
   color: var(--text-color);
 }
 
