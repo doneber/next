@@ -3,11 +3,15 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
     '@pinia/nuxt',
+    'nuxt-gtag',
   ],
+  gtag: {
+    id: 'G-SBTKZF9H3B'
+  },
   content: {
     highlight: {
       theme: 'dark-plus',
       // theme: 'github-dark'
-    }
+    },
   }
 })
