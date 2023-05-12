@@ -13,5 +13,12 @@ export default defineNuxtConfig({
       theme: 'dark-plus',
       // theme: 'github-dark'
     },
-  }
+  },
+  css: ['~/assets/css/main.css'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
 })
